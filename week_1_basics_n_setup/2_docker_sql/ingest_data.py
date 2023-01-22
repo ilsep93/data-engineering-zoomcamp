@@ -1,9 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-import os
 import argparse
-
+import os
 from time import time
 
 import pandas as pd
@@ -34,8 +33,8 @@ def main(params):
 
     df = next(df_iter)
 
-    df.tpep_pickup_datetime = pd.to_datetime(df.tpep_pickup_datetime)
-    df.tpep_dropoff_datetime = pd.to_datetime(df.tpep_dropoff_datetime)
+    df.lpep_pickup_datetime = pd.to_datetime(df.lpep_pickup_datetime)
+    df.lpep_pickup_datetime = pd.to_datetime(df.lpep_pickup_datetime)
 
     df.head(n=0).to_sql(name=table_name, con=engine, if_exists='replace')
 
