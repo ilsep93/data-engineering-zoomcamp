@@ -37,6 +37,7 @@ WHERE passenger_count=3 AND CAST(lpep_pickup_datetime AS DATE)='2019-01-01';
 * For the passengers picked up in the Astoria Zone which was the drop up zone that had the largest tip?
 
 ```SQL
+WITH astoria_max_tip as (
 SELECT 
 	MAX(tip_amount) as max_tip,
 	taxi."DOLocationID",
@@ -47,4 +48,10 @@ ON taxi."PULocationID" = zpu."LocationID"
 WHERE zpu."Zone"='Astoria'
 GROUP BY taxi."DOLocationID", zpu."Zone"
 ORDER BY max_tip DESC
+LIMIT 1
+)
+SELECT zpu."Zone", max_tip
+FROM astoria_max_tip
+JOIN zones zpu
+ON astoria_max_tip."DOLocationID" = zpu."LocationID"
 ```
