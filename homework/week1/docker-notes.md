@@ -185,7 +185,7 @@ docker run -it \
 ```bash
 URL="https://s3.amazonaws.com/nyc-tlc/misc/taxi+_zone_lookup.csv"
 
-docker run -it --rm \
+docker run -it \
   --network=pg-network \
   taxi_ingest:v001 \
     --user=root \
