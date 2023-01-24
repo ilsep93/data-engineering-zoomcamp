@@ -12,8 +12,8 @@ services:
       - POSTGRES_DB=ny_taxi
     volumes:
       - type: bind
-        source: ./ny_taxi_postgres_data
-        target: var/lib/postgresql/data
+        source: /Users/ilsepaniagua/Documents/GitHub/data-engineering-zoomcamp/homework/week1/ny_taxi_postgres_data
+        target: /var/lib/postgresql/data
     ports:
       - "4000:5432"
     networks:
@@ -27,9 +27,9 @@ services:
       - PGADMIN_DEFAULT_EMAIL=admin@admin.com
       - PGADMIN_DEFAULT_PASSWORD=root
     volumes:
-      -type: volume
-      source: pgadmin_data
-      target: /var/lib/pgadmin
+      - type: volume
+        source: pgadmin_data
+        target: /var/lib/pgadmin
     ports:
       - "8080:80"
     networks:
