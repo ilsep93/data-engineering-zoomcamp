@@ -29,17 +29,41 @@ prefect block register -m prefect_gcp
 
 Documentation: https://docs.prefect.io/concepts/blocks/
 
+# Deployments
 
+Documentation: https://docs.prefect.io/tutorials/deployments/
 
+Create a .yaml file to specify deployment for loading the green taxi data to GCS.
 
-#Schedule a deployment: https://docs.prefect.io/tutorials/deployments/
+* prefect deployment build: Generate a deployment YAML from /path/to/file.py:flow_function
+* Name of file to deploy: homework/workflow_orchestration/etl_web_to_gcs.py
+* Entrypoint (first flow in file): etl_web_to_gcs
+* Name of deployment: green_taxi_flow
+
+```bash
 prefect deployment build homework/workflow_orchestration/etl_web_to_gcs.py:etl_web_to_gcs -n green_taxi_flow
+```
 
-# Found flow 'etl-web-to-gcs'
-# Default '.prefectignore' file written to 
-# /Users/ilsepaniagua/Documents/GitHub/data-engineering-zoomcamp/.prefectignore
-# Deployment YAML created at 
-# '/Users/ilsepaniagua/Documents/GitHub/data-engineering-zoomcamp/etl_web_to_gcs-deploy
-# ment.yaml'.
-# Deployment storage None does not have upload capabilities; no files uploaded.  Pass 
-# --skip-upload to suppress this warning.
+Apply the deployment for it to appear on the UI.
+```bash
+prefect deployment apply etl_web_to_gcs-deployment.yaml
+```
+
+We could also deploy with Python using the `deployment.py` file
+
+```bash
+python deployment.py
+```
+
+# Run deployment locally
+
+First, we need to add an agent to manage our work queues.
+
+```bash
+prefect agent start -q default
+```
+
+```bash
+prefect deployment run etl-web-to-gcs/green_taxi_flow
+```
+
