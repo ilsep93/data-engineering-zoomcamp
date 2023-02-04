@@ -38,7 +38,7 @@ def write_local(df: pd.DataFrame, color: str, dataset_file: str) -> Path:
 def write_gcs(path: Path) -> None:
     """Upload local parquet file to GCS"""
     gcp_bucket = GcsBucket.load("green-taxi-rides")
-    gcp_bucket.upload_from_path(from_path=path, to_path="data/{color}")
+    gcp_bucket.upload_from_path(from_path=path, to_path=path)
     return
 
 
