@@ -64,6 +64,6 @@ prefect agent start -q default
 ```
 
 ```bash
-prefect deployment run etl-web-to-gcs/green_taxi_flow
+prefect deployment run etl-web-to-gcs/multi_green_taxi_flow
 ```
 
