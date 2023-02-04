@@ -41,7 +41,7 @@ Create a .yaml file to specify deployment for loading the green taxi data to GCS
 * Name of deployment: green_taxi_flow
 
 ```bash
-prefect deployment build homework/workflow_orchestration/etl_web_to_gcs.py:etl_web_to_gcs -n green_taxi_flow
+prefect deployment build homework/workflow_orchestration/etl_web_to_gcs.py:etl_parent_flow -n multi-green_taxi_flow
 ```
 
 Apply the deployment for it to appear on the UI.
