@@ -10,10 +10,6 @@ Using the `etl_web_to_gcs.py` flow that loads taxi data into GCS as a guide, cre
 How many rows does that dataset have?
 
 * 447,770
-* 766,792
-* 299,234
-* 822,132
-
 
 ## Question 2. Scheduling with Cron
 
@@ -21,11 +17,7 @@ Cron is a common scheduling specification for workflows.
 
 Using the flow in `etl_web_to_gcs.py`, create a deployment to run on the first of every month at 5am UTC. What’s the cron schedule for that?
 
-- `0 5 1 * *`
-- `0 0 5 1 *`
-- `5 * 1 0 *`
-- `* * 5 1 0`
-
+`0 5 1 * *`
 
 ## Question 3. Loading data to BigQuery 
 
@@ -46,8 +38,6 @@ Make sure you have the parquet data files for Yellow taxi data for Feb. 2019 and
 - 27,235,753
 - 11,338,483
 
-
-
 ## Question 4. Github Storage Block
 
 Using the `web_to_gcs` script from the videos as a guide, you want to store your flow code in a GitHub repository for collaboration with your team. Prefect can look in the GitHub repo to find your flow code and read it. Create a GitHub storage block from the UI or in Python code and use that in your Deployment instead of storing your flow code locally or baking your flow code into a Docker image. 
@@ -58,12 +48,7 @@ Run your deployment in a local subprocess (the default if you don’t specify an
 
 How many rows were processed by the script?
 
-- 88,019
-- 192,297
-- 88,605
-- 190,225
-
-
+`rows: 88605`
 
 ## Question 5. Email or Slack notifications
 
