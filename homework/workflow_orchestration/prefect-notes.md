@@ -37,7 +37,7 @@ Create a .yaml file to specify deployment for loading the green taxi data to GCS
 
 * prefect deployment build: Generate a deployment YAML from /path/to/file.py:flow_function
 * Name of file to deploy: homework/workflow_orchestration/etl_web_to_gcs.py
-* Entrypoint (first flow in file): etl_web_to_gcs
+* Entrypoint (flow to run): etl_parent_flow
 * Name of deployment: green_taxi_flow
 
 ```bash
@@ -66,4 +66,27 @@ prefect agent start -q default
 ```bash
 prefect deployment run etl-web-to-gcs/multi_green_taxi_flow
 ```
+Note that deployment runs will fail if the specified buckets do not exist.
 
+# Launch Code From Github
+
+First, we create a Github credentials block using the UI.
+
+```python
+from prefect.filesystems import GitHub
+
+github_block = GitHub.load("github-repo")
+```
+
+Once the block is created, we update our deployment to pull code from Github (rather than locally)
+
+* -sb: storage-block. The slug of a remote storage block. Use the syntax 'block_type/block_name'
+* github/github-repo: Github storage block, followed by Github block name created earlier
+* Name of file to deploy: homework/workflow_orchestration/etl_web_to_gcs.py
+* Entrypoint (flow to run): etl_parent_flow
+
+```bash
+prefect deployment build -n etl_github -sb github/github-repo homework/workflow_orchestration/etl_web_to_gcs.py:etl_parent_flow
+```
+
+The same can be done using the `deployment.py` script by specifying a `storage` parameter.
